@@ -96,3 +96,5 @@ Reasoner mampu menyimpulkan fakta baru berdasarkan struktur dan axioma yang ada.
 
 - Pertama-tama saya membuat sebuah individu bernama `TestOrderValid` dan hanya diberi satu properti, yaitu `hasItem :NasiGoreng`. Individu ini tidak secara eksplisit dinyatakan sebagai anggota kelas `Order`.
 - Lalu selanjutnya, saya menjalankan reasoner dan berdasarkan aksioma batasan kardinalitas pada kelas `Order` (sebuah `Order` harus memiliki minimal satu `MenuItem`), reasoner menyimpulkan bahwa `TestOrderValid` adalah anggota dari kelas `Order`.
+  <img width="1914" height="1008" alt="Hasil Reasoning" src="https://github.com/user-attachments/assets/9b55d5dc-16e3-4a6c-bc99-9d6e46798ada"/>
+
