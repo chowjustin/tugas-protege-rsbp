@@ -1,0 +1,324 @@
+@prefix : <http://www.semanticweb.org/asus/ontologies/2025/9/restaurant/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/asus/ontologies/2025/9/restaurant/> .
+
+<http://www.semanticweb.org/asus/ontologies/2025/9/restaurant> rdf:type owl:Ontology ;
+                                                                rdfs:comment "Latihan Ontologi RSBP Pertemuan 9: Restaurant Ontology"@en .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#containsIngredient
+:containsIngredient rdf:type owl:ObjectProperty ;
+                    rdfs:domain :MenuItem ;
+                    rdfs:range :Ingredient ;
+                    rdfs:comment "MenuItem containsIngredient Ingredient"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#hasItem
+:hasItem rdf:type owl:ObjectProperty ;
+         rdfs:domain :Order ;
+         rdfs:range :MenuItem ;
+         rdfs:comment "Order hasItem MenuItem"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#placedBy
+:placedBy rdf:type owl:ObjectProperty ;
+          rdfs:domain :Order ;
+          rdfs:range :Customer ;
+          rdfs:comment "Order placedBy Customer"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#preparedBy
+:preparedBy rdf:type owl:ObjectProperty ;
+            rdfs:domain :Order ;
+            rdfs:range :Chef ;
+            rdfs:comment "Order preparedBy Chef"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#servedBy
+:servedBy rdf:type owl:ObjectProperty ;
+          rdfs:domain :Order ;
+          rdfs:range :Waiter ;
+          rdfs:comment "Order servedBy Waiter"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#hasAllergenInfo
+:hasAllergenInfo rdf:type owl:DatatypeProperty ,
+                          owl:FunctionalProperty ;
+                 rdfs:domain :Ingredient ;
+                 rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#hasPrice
+:hasPrice rdf:type owl:DatatypeProperty ,
+                   owl:FunctionalProperty ;
+          rdfs:domain :MenuItem ;
+          rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#orderTimestamp
+:orderTimestamp rdf:type owl:DatatypeProperty ,
+                         owl:FunctionalProperty ;
+                rdfs:domain :Order ;
+                rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#staffID
+:staffID rdf:type owl:DatatypeProperty ,
+                  owl:FunctionalProperty ;
+         rdfs:domain :Staff ;
+         rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#Appetizer
+:Appetizer rdf:type owl:Class ;
+           rdfs:subClassOf :Food .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#Beverage
+:Beverage rdf:type owl:Class ;
+          rdfs:subClassOf :MenuItem .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#Chef
+:Chef rdf:type owl:Class ;
+      rdfs:subClassOf :Staff .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#Coffee
+:Coffee rdf:type owl:Class ;
+        rdfs:subClassOf :Beverage .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#Customer
+:Customer rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#Dessert
+:Dessert rdf:type owl:Class ;
+         rdfs:subClassOf :Food .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#Food
+:Food rdf:type owl:Class ;
+      rdfs:subClassOf :MenuItem .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#Ingredient
+:Ingredient rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#MainCourse
+:MainCourse rdf:type owl:Class ;
+            rdfs:subClassOf :Food .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#MenuItem
+:MenuItem rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#NonCoffee
+:NonCoffee rdf:type owl:Class ;
+           rdfs:subClassOf :Beverage .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#Order
+:Order rdf:type owl:Class ;
+       owl:equivalentClass [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasItem ;
+                             owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onClass :MenuItem
+                           ] .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#Staff
+:Staff rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#Waiter
+:Waiter rdf:type owl:Class ;
+        rdfs:subClassOf :Staff .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#Cappuccino
+:Cappuccino rdf:type owl:NamedIndividual ,
+                     :Coffee ;
+            :containsIngredient :CoffeeBeans ,
+                                :Milk ;
+            :hasPrice "25000.0"^^xsd:float .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#Chicken
+:Chicken rdf:type owl:NamedIndividual ,
+                  :Ingredient ;
+         :hasAllergenInfo "None" .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#ChickenSteak
+:ChickenSteak rdf:type owl:NamedIndividual ,
+                       :MainCourse ;
+              :containsIngredient :Chicken ,
+                                  :Garlic ;
+              :hasPrice "70000.0"^^xsd:float .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#ChocoPudding
+:ChocoPudding rdf:type owl:NamedIndividual ,
+                       :Dessert ;
+              :containsIngredient :Chocolate ;
+              :hasPrice "28000.0"^^xsd:float .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#Chocolate
+:Chocolate rdf:type owl:NamedIndividual ,
+                    :Ingredient ;
+           :hasAllergenInfo "None" .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#CoffeeBeans
+:CoffeeBeans rdf:type owl:NamedIndividual ,
+                      :Ingredient ;
+             :hasAllergenInfo "Caffeine" .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#Garlic
+:Garlic rdf:type owl:NamedIndividual ,
+                 :Ingredient ;
+        :hasAllergenInfo "None" .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#GordonRamsay
+:GordonRamsay rdf:type owl:NamedIndividual ,
+                       :Chef ;
+              :staffID "C0002" .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#Hubner
+:Hubner rdf:type owl:NamedIndividual ,
+                 :Customer .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#JamieOliver
+:JamieOliver rdf:type owl:NamedIndividual ,
+                      :Customer .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#JohnDoe
+:JohnDoe rdf:type owl:NamedIndividual ,
+                  :Waiter ;
+         :staffID "S0002" .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#Lemon
+:Lemon rdf:type owl:NamedIndividual ,
+                :Ingredient ;
+       :hasAllergenInfo "None" .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#LemonTea
+:LemonTea rdf:type owl:NamedIndividual ,
+                   :NonCoffee ;
+          :containsIngredient :Lemon ;
+          :hasPrice "18000.0"^^xsd:float .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#Milk
+:Milk rdf:type owl:NamedIndividual ,
+               :Ingredient ;
+      :hasAllergenInfo "LactoseAllergen" .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#NasiGoreng
+:NasiGoreng rdf:type owl:NamedIndividual ,
+                     :MainCourse ;
+            :containsIngredient :Garlic ,
+                                :Onion ,
+                                :Shallot ;
+            :hasPrice "35000.0"^^xsd:float .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#ORD001
+:ORD001 rdf:type owl:NamedIndividual ,
+                 :Order ;
+        :hasItem :LemonTea ,
+                 :NasiGoreng ;
+        :placedBy :JamieOliver ;
+        :preparedBy :UncleRoger ;
+        :servedBy :JohnDoe ;
+        :orderTimestamp "2025-10-30T10:30:00"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#ORD002
+:ORD002 rdf:type owl:NamedIndividual ,
+                 :Order ;
+        :hasItem :Cappuccino ,
+                 :ChickenSteak ,
+                 :ChocoPudding ,
+                 :PotatoChips ;
+        :placedBy :Hubner ;
+        :preparedBy :GordonRamsay ;
+        :servedBy :OlivierGiroud ;
+        :orderTimestamp "2025-10-30T12:30:00"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#OlivierGiroud
+:OlivierGiroud rdf:type owl:NamedIndividual ,
+                        :Waiter ;
+               :staffID "S0001" .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#Onion
+:Onion rdf:type owl:NamedIndividual ,
+                :Ingredient ;
+       :hasAllergenInfo "None" .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#Potato
+:Potato rdf:type owl:NamedIndividual ,
+                 :Ingredient ;
+        :hasAllergenInfo "None" .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#PotatoChips
+:PotatoChips rdf:type owl:NamedIndividual ,
+                      :Appetizer ;
+             :containsIngredient :Potato ;
+             :hasPrice "40000.0"^^xsd:float .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#Shallot
+:Shallot rdf:type owl:NamedIndividual ,
+                  :Ingredient ;
+         :hasAllergenInfo "None" .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#TestOrderValid
+:TestOrderValid rdf:type owl:NamedIndividual ;
+                :hasItem :NasiGoreng .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2025/9/restaurant#UncleRoger
+:UncleRoger rdf:type owl:NamedIndividual ,
+                     :Chef ;
+            :staffID "C0001" .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
